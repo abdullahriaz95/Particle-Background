@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:particle_practice/palette_colors.dart';
 import 'package:particle_practice/particle.dart';
 
+import 'rnd.dart';
+
 class ParticleHandler with ChangeNotifier{
 
   int numOfParticles;
@@ -13,7 +15,7 @@ class ParticleHandler with ChangeNotifier{
 
   ParticleHandler({
     Size size,
-    this.numOfParticles = 40,
+    this.numOfParticles = 400,
 }){
     particles = List<Particle>(numOfParticles);
     setSize(size);
@@ -33,9 +35,10 @@ class ParticleHandler with ChangeNotifier{
 
   Particle resetParticle(int i) {
     Particle p = particles[i];
-    p.size = p.life = p.lifeLeft = 0;
+    p.size = p.life = 0;
+    p.lifeLeft = Rnd.getDouble(200, 500);
     p.x = Random().nextInt(width.toInt()).toDouble();
-    p.y = height-30;
+    p.y =Random().nextInt(height.toInt()).toDouble();
     return p;
   }
 

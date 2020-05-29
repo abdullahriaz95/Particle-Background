@@ -10,6 +10,7 @@ class Particle {
   bool isFilled;
   double vx;
   double vy;
+  bool plusminus;
 
   Particle({
     this.size = 0,
@@ -21,7 +22,7 @@ class Particle {
     this.isFilled = false,
     this.vx = 0,
     this.vy =0,
-
+    this.plusminus = false,
 
   });
 }

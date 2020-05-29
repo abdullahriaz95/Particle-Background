@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:particle_practice/palette.dart';
@@ -36,8 +36,6 @@ class _MyHomePageState extends State<MyHomePage>
   Timer _timer;
   AnimationController _animationController;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -48,8 +46,7 @@ class _MyHomePageState extends State<MyHomePage>
         .chain(CurveTween(curve: Curves.elasticOut))
         .animate(_animationController)
           ..addListener(() {
-            if(animation.isCompleted)
-              _animationController.repeat();
+            if (animation.isCompleted) _animationController.repeat();
 
             setState(() {});
           });
@@ -63,14 +60,22 @@ class _MyHomePageState extends State<MyHomePage>
       backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return Scene(constraints.biggest
-              );
+          return Stack(
+            children: [
+              Scene(constraints.biggest),
+//              Positioned.fill(
+//                child: BackdropFilter(
+//                  filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+//                  child: Container(
+//                    color: Colors.black.withOpacity(0),
+//                  ),
+//                ),
+//              ),
+
+            ],
+          );
         },
       ),
     );
-
-
-
   }
-
 }

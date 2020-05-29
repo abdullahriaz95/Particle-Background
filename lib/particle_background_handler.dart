@@ -14,10 +14,27 @@ class ParticleBackgroundHandler extends ParticleHandler {
     // Reset particles once they are invisible or at the edge.
 
     particles.asMap().forEach((i, p) {
-//      p.x -= p.vx ;
-      p.y -= p.vy;
 
-      p.lifeLeft = _getDistanceFromTop(p);
+//      if(Rnd.getBool()){
+//        p.x = p.vx ;
+//        p.y = p.vy;
+//      }else{
+//        p.x -= p.vx ;
+//        p.y -= p.vy;
+//      }
+
+    if(p.plusminus){
+      p.x += p.vx ;
+      p.y += p.vy;
+    }else{
+
+      p.x -= p.vx ;
+      p.y -= p.vy;
+    }
+
+
+      p.lifeLeft = p.lifeLeft-1;
+//      p.lifeLeft = _getDistanceFromTop(p);
 
       print(p.lifeLeft);
       // Gradually reduce the size of all particles.
@@ -94,8 +111,12 @@ class ParticleBackgroundHandler extends ParticleHandler {
 
     // Particle movement vector.
 
-    p.vx = sin(-100);
-    p.vy = cos(-50);
+    p.vx = sin(Rnd.getInt(-200, 200));
+//    p.vx = sin(-500);
+    p.vy = cos(Rnd.getInt(-200, 200));
+//    p.vy = cos(-100);
+
+    p.plusminus = (Rnd.getBool());
 
     // Particle movement angle.
 //    p.a = atan2(p.vy, p.vx) + pi;
